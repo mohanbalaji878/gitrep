@@ -8,5 +8,5 @@ steps:
 - checkout: self
 
 - script: |
-    az bicep build --file $(Build.SourcesDirectory)/bise.bicep
+    az bicep build --file $(Build.SourcesDirectory)/newbicep.bicep
   displayName: 'Validate syntax using Azure Bicep CLI'
