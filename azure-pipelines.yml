@@ -11,10 +11,10 @@ steps:
 - script: |
     cd source_code
     echo Validating the syntax...
-    az group deployment validate --template-file template.json --parameters params.json
+    az deployment group validate --template-file template.json --parameters params.json
   displayName: 'Validate syntax'
 
 - script: |
     echo Deploying resources to Azure...
-    az group deployment create --template-file template.json --parameters params.json
+    az deployment group create --template-file template.json --parameters params.json
   displayName: 'Deploy to Azure'
