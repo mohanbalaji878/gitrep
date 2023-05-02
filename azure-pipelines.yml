@@ -10,3 +10,8 @@ steps:
 - script: |
     az bicep build --file $(Build.SourcesDirectory)/newbicep.bicep
   displayName: 'Validate syntax using Azure Bicep CLI'
+  - script: |
+    echo Deploying resources to Azure
+    az login 
+    az deployment group create --resource-group rg6 --template-file newbicep.bicep
+  displayName: 'Deploy to Azure'
