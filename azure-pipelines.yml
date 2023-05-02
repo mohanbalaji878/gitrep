@@ -11,10 +11,10 @@ steps:
 - script: |
     cd source_code
     echo Validating the syntax...
-    az deployment group validate --template-file bise.bicep 
+    az deployment group validate --template-file azure-pipelines.yml 
   displayName: 'Validate syntax'
 
 - script: |
     echo Deploying resources to Azure...
-    az deployment group create --template-file bise.bicep 
+    az deployment group create --template-file azure-pipelines.yml
   displayName: 'Deploy to Azure'
