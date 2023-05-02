@@ -2,19 +2,11 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
 - checkout: self
-  path: source_code
 
 - script: |
-    cd source_code
-    echo Validating the syntax...
-    az deployment group validate --template-file bise.bicep 
-  displayName: 'Validate syntax'
-
-- script: |
-    echo Deploying resources to Azure...
-    az deployment group create --template-file bise.bicep
-  displayName: 'Deploy to Azure'
+    az bicep build --file $(Build.SourcesDirectory)/BicepTemplate.bicep
+  displayName: 'Validate syntax using Azure Bicep CLI'
