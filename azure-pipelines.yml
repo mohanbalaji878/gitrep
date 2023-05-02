@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -10,10 +5,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self
+  path: source_code
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    cd source_code
+    echo Validating the syntax...
+    az group deployment validate --template-file template.json --parameters params.json
+  displayName: 'Validate syntax'
+
+- script: |
+    echo Deploying resources to Azure...
+    az group deployment create --template-file template.json --parameters params.json
+  displayName: 'Deploy to Azure'
