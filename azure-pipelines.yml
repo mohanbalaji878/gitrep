@@ -6,10 +6,10 @@ pool:
 
 steps:
 - checkout: self
-  path: bise.bicep
+  path: source_code
 
 - script: |
-    cd bise.bicep
+    cd source_code
     echo Validating the syntax...
     az deployment group validate --template-file azure-pipelines.yml 
   displayName: 'Validate syntax'
