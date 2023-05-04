@@ -1,0 +1,23 @@
+name: Azure Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Validate
+      run: |
+        # Add your validation command 
+        az  bicep build --file newbicep.bicep
+    - name: Deploy
+      run: |
+        # Add the command   
+         az login
+         az deployment group create --resource-group gitres --template-file newbicep.bicep
