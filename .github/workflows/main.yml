@@ -18,6 +18,6 @@ jobs:
         az  bicep build --file newbicep.bicep
     - name: Deploy
       run: |
-        # Add the command   
+        # Add the  command   
          az login
          az deployment group create --resource-group gitres --template-file newbicep.bicep
